@@ -8,15 +8,14 @@ class Imperative {
   var largest_window: Int = 0
   var num: Int = 0
   var count: Int = 0
-  var stats: Array[String]
+  var stats = Array[String]()
 
   var queue = new mutable.Queue[Int]()
   //Option Int: Can be set to Some(n), or None.
   //I don't think that I need that type anymore
 
   def toQueue(line: String, args: Array[String]): Unit = {
-    //I am assuming that args is a list of strings.  I need to verify that this is the case
-    if (queue.length == args.max) {
+    if (queue.length == (args.max) { //What type is args?  I used to know, but I forget. Search comments for hints.
       queue.dequeue
     }
     line.toInt+=:queue

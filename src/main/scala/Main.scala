@@ -1,6 +1,6 @@
 package cs372.p1
 
-import cs372.p1.Imperative
+//import cs372.p1.Imperative ?????
 import scala.io.Source
 
 /**
@@ -13,7 +13,7 @@ object main extends App {
     for (line <- Source.stdin.getLines) {
       imp.toQueue(line, args)
       for (arg <- args) {
-        imp.getStats(arg, arg_amount)
+        imp.getStats(arg.toInt, arg_amount)
         arg_amount = arg_amount + 1
         imp.produceLine()
       }

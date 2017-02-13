@@ -1,3 +1,6 @@
+
+/*This is all pseudocode that is wrong
+
 package cs372.p1
 /**
   * Created by Matthew on 2/7/17.
@@ -15,3 +18,5 @@ class Functional {
   val result = "?" //It would be a string that contains all of the stats with spaces in between them.
 
 }
+
+*/
