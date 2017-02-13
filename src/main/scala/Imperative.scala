@@ -15,7 +15,11 @@ class Imperative {
   //I don't think that I need that type anymore
 
   def toQueue(line: String, args: Array[String]): Unit = {
-    if (queue.length == (args.max) { //What type is args?  I used to know, but I forget. Search comments for hints.
+    var args_int = new Array[Int](args.length)
+    for (i <- 0 to args.length-1) {
+      args_int(i) = args(i).toInt
+    }
+    if (queue.length == args_int.max) {
       queue.dequeue
     }
     line.toInt+=:queue
