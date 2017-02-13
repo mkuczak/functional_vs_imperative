@@ -6,7 +6,7 @@ import scala.io.Source
 /**
   * Created by Matthew on 2/10/17.
   */
-class Main extends App {
+object main extends App {
   val imp = new Imperative()
   var arg_amount: Int = 0
   if (Source.stdin.length > 0) {
