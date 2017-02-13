@@ -26,14 +26,14 @@ class Imperative {
     //print(queue)
   }
 
-  def getStats (winSize: Int) : Unit = {
+  def getStats (winSize: Int, len_stat: Int) : Unit = {
     //I'll need a for loop in main that runs this function multiple times with all window sizes
     //POSSIBLE PROBLEM: IF the user inputs 0, this probable doesn't work.  Can I assume intelligent user?
     var total: Int = 0
     var min: Int = queue(0)
     var max: Int = queue(0)
     var mean: Int = 0
-    val stats = new Array[String](winSize)
+    //val stats = new Array[String](winSize)
 
     /*Checks to see whether the queue hasn't reached the window size.
     If it hasn't, the stats just become "?" */
@@ -47,18 +47,22 @@ class Imperative {
         }
       }
       mean = total/winSize
-      stats(0) = min.toString
-      stats(1) = mean.toString()
-      stats(2) = max.toString()
+      stats(0+len_stat*3) = min.toString
+      stats(1+len_stat*3) = mean.toString()
+      stats(2+len_stat*3) = max.toString()
     } else {
-      stats(0) = "?"
-      stats(1) = "?"
-      stats(2) = "?"
+      stats(0+len_stat*3) = "?"
+      stats(1+len_stat*3) = "?"
+      stats(2+len_stat*3) = "?"
     }
   }
 
   def produceLine (): Unit = {
-    print(num.toString + " " + count.toString + " " + stats(0) + " " + stats(1) + " " + stats(2))
+    print(num.toString + " " + count.toString)
+    for (stat <- stats) {
+      print(" " + stat)
+    }
+    println("")
   }
 
 }
