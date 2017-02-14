@@ -6,16 +6,18 @@ import scala.io.Source
 /**
   * Created by Matthew on 2/10/17.
   */
+
 object main extends App {
   val imp = new Imperative()
   var arg_amount: Int = 0
-  for (line <- Source.stdin.getLines) {
-    imp.toQueue(line, args)
-    for (arg <- args) {
-      imp.getStats(arg.toInt, arg_amount)
-      arg_amount = arg_amount + 1
-      imp.produceLine()
-    }
-  }
-  print(args)
+  args.foreach(arg => println(arg))
+   for (line <- Source.stdin.getLines) {
+     imp.toQueue(line, args)
+     for (arg <- args) {
+       imp.getStats(arg.toInt, arg_amount)
+       arg_amount = arg_amount + 1
+       imp.produceLine()
+     }
+   }
+  // Press CTRL+D to leave this for loop and continue...
 }

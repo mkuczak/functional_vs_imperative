@@ -8,7 +8,7 @@ class Imperative {
   var largest_window: Int = 0
   var num: Int = 0
   var count: Int = 0
-  var stats = Array[String]()
+  var stats: List[String] = List()
 
   var queue = new mutable.Queue[Int]()
   //Option Int: Can be set to Some(n), or None.
@@ -50,13 +50,13 @@ class Imperative {
         }
       }
       mean = total/winSize
-      stats(0+len_stat*3) = min.toString
-      stats(1+len_stat*3) = mean.toString()
-      stats(2+len_stat*3) = max.toString()
+      stats:+min.toString()
+      stats:+mean.toString()
+      stats:+max.toString()
     } else {
-      stats(0+len_stat*3) = "?"
-      stats(1+len_stat*3) = "?"
-      stats(2+len_stat*3) = "?"
+      stats:+"?"
+      stats:+"?"
+      stats:+= "?"
     }
   }
 
