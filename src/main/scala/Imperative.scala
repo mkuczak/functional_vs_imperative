@@ -50,13 +50,13 @@ class Imperative {
         }
       }
       mean = total/winSize
-      stats:+min.toString()
-      stats:+mean.toString()
-      stats:+max.toString()
+      stats = stats:+(min.toString())
+      stats = stats:+(mean.toString())
+      stats = stats:+(max.toString())
     } else {
-      stats:+"?"
-      stats:+"?"
-      stats:+= "?"
+      stats = stats:+"?"
+      stats = stats:+"?"
+      stats = stats:+"?"
     }
   }
 
@@ -66,6 +66,7 @@ class Imperative {
       print(" " + stat)
     }
     println("")
+    stats = List()
   }
-
+//This prints the number and count twice. Oops.  Fix please.
 }
