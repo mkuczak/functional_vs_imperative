@@ -35,7 +35,7 @@ class Imperative {
     var total: Int = 0
     var min: Int = queue(0)
     var max: Int = queue(0)
-    var mean: Int = 0
+    var mean: Double = 0
     //val stats = new Array[String](winSize)
 
     /*Checks to see whether the queue hasn't reached the window size.
@@ -49,7 +49,7 @@ class Imperative {
           min = queue(i)
         }
       }
-      mean = total/winSize
+      mean = (total.toDouble)/(winSize.toDouble)
       stats = stats:+(min.toString())
       stats = stats:+(mean.toString())
       stats = stats:+(max.toString())

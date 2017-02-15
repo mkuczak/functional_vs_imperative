@@ -16,7 +16,7 @@ object main extends App {
      for (arg <- args) {
        imp.getStats(arg.toInt, arg_amount)
        arg_amount = arg_amount + 1
-       imp.produceLine()
+       imp.produceLine() //Naw.  This shouldn't be in a loop.  Instead, I should pass in the array of args.
      }
    }
   // Press CTRL+D to leave this for loop and continue...
