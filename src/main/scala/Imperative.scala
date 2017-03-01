@@ -36,7 +36,8 @@ class Imperative {
     var min: Int = queue(0)
     var max: Int = queue(0)
     var mean: Double = 0
-    //val stats = new Array[String](winSize)
+    //How do I make it so that if the average is 5 that it doesn't print as 5.0?
+    //String manipulation seems like the wrong way to do it.
 
     /*Checks to see whether the queue hasn't reached the window size.
     If it hasn't, the stats just become "?" */
@@ -68,5 +69,4 @@ class Imperative {
     println("")
     stats = List()
   }
-//This prints the number and count twice. Oops.  Fix please.
 }

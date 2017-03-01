@@ -8,16 +8,24 @@ import scala.io.Source
   */
 
 object main extends App {
-  val imp = new Imperative()
-  var arg_amount: Int = 0
-  args.foreach(arg => println(arg))
-   for (line <- Source.stdin.getLines) {
-     imp.toQueue(line, args)
-     for (arg <- args) {
-       imp.getStats(arg.toInt, arg_amount)
-       arg_amount = arg_amount + 1
-       imp.produceLine() //Naw.  This shouldn't be in a loop.  Instead, I should pass in the array of args.
-     }
-   }
+
+
+  val wins = args.map(_.toInt)
+  //val maxWin: Int = wins.reduceLeft(_ max _)
+  //var numWin: Int = wins.length
+  //Gathers information about the arguments passed in and puts them into a usable form called "wins"
+
+  val incoming = Source.stdin.getLines
+  val words = incoming.flatMap(_.split("\\W+"))
+  val numbers = words.map(_.toInt)
+  //Converts the standard input into a usable form called "numbers"
+
+  //val imp = new Imperative()
+  //imp.toQueue(numbers)
+
+  val fun = new Functional()
+  fun.toQueue(numbers, wins)
+
+
   // Press CTRL+D to leave this for loop and continue...
 }
