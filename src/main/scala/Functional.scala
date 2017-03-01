@@ -14,8 +14,8 @@ class Functional {
       (List.empty[Int], 0)
     } { case ((window, count), next) =>
       val window1 = next +: window.take(win - 1)
-      //getStats()
-      //produceLine()
+      //produceLine(getStats())
+
       if (win < window.length) {
         print(next + " " + (count + 1).toString + " ? ? ?")
       } else {
@@ -27,14 +27,15 @@ class Functional {
   }
 
   def getStats(window: List[Int], wins: Array[Int]): List[Int] = {
-    val printThis = win.foldleft {
+    val printThis = wins.foldleft {
       (List.empty[Any])
     } { (prepThis, next) =>
-      val prepThis1 = prepThis +: window.take(next).min
-      val prepThis2 = prepThis1 +: ((window.take(next).sum))/(next)
-      val prepThis3 = prepThis2 +: window.take(next).max
+      val prepThis1 = (window.take(next)).min :+ prepThis
+      val prepThis2 = ((window.take(next).sum)) / (next) :+ prepThis1
+      val prepThis3 = (window.take(next)).max :+ prepThis2
+        (prepThis3)
     }
-    (prepThis3)
+    printThis
   }
 
   def produceLine(printThis: List[Any]): Unit = {
