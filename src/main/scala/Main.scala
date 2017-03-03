@@ -20,11 +20,11 @@ object main extends App {
   val numbers = words.map(_.toInt)
   //Converts the standard input into a usable form called "numbers"
 
-  //val imp = new Imperative()
-  //imp.toQueue(numbers)
+  val imp = new Imperative()
+  imp.toQueue(numbers, wins)
 
-  val fun = new Functional()
-  fun.toQueue(numbers, wins)
+//  val fun = new Functional()
+//  fun.toQueue(numbers, wins)
 
 
   // Press CTRL+D to leave this for loop and continue...

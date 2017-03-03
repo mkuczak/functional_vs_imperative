@@ -14,59 +14,41 @@ class Imperative {
   //Option Int: Can be set to Some(n), or None.
   //I don't think that I need that type anymore
 
-  def toQueue(line: String, args: Array[String]): Unit = {
-    var args_int = new Array[Int](args.length)
-    for (i <- 0 to args.length-1) {
-      args_int(i) = args(i).toInt
-    }
-    if (queue.length == args_int.max) {
-      queue.dequeue
-    }
-    line.toInt+=:queue
+  def toQueue(numbers: Iterator[Int], wins: Array[Int]): Unit = {
+    var window: List[Int] = List()
+    var maxWin = wins.max
 
-    count = count + 1
-    num = line.toInt
-    //print(queue)
+    var count: Int = 0
+
+    for(num<-numbers) {
+      count = count + 1
+      window = num +: window.take(maxWin - 1)
+      print(produceLine(num, count, getStats(window,wins))+"\n")
+    }
   }
 
-  def getStats (winSize: Int, len_stat: Int) : Unit = {
-    //I'll need a for loop in main that runs this function multiple times with all window sizes
-    //POSSIBLE PROBLEM: IF the user inputs 0, this probable doesn't work.  Can I assume intelligent user?
-    var total: Int = 0
-    var min: Int = queue(0)
-    var max: Int = queue(0)
-    var mean: Double = 0
-    //How do I make it so that if the average is 5 that it doesn't print as 5.0?
-    //String manipulation seems like the wrong way to do it.
-
-    /*Checks to see whether the queue hasn't reached the window size.
-    If it hasn't, the stats just become "?" */
-    if (queue.size >= winSize) {
-      for (i <- 0 to winSize - 1) {
-        total = total + queue(i)
-        if (queue(i) > max) {
-          max = queue(i)
-        } else if (queue(i) < min) {
-          min = queue(i)
-        }
+  def getStats (window: List[Int], wins: Array[Int]): List[Any] = {
+    var stats: List[Any] = List()
+    for(win<-wins){
+      if(win<=window.size) {
+        stats = stats :+ (window.take(win)).min
+        stats = stats :+ (((window.take(win)).sum).toDouble)/((win).toDouble)
+        stats = stats :+ (window.take(win)).max
+      } else {
+        stats = stats:+"?"
+        stats = stats:+"?"
+        stats = stats:+"?"
       }
-      mean = (total.toDouble)/(winSize.toDouble)
-      stats = stats:+(min.toString())
-      stats = stats:+(mean.toString())
-      stats = stats:+(max.toString())
-    } else {
-      stats = stats:+"?"
-      stats = stats:+"?"
-      stats = stats:+"?"
     }
+    stats
   }
 
-  def produceLine (): Unit = {
-    print(num.toString + " " + count.toString)
-    for (stat <- stats) {
-      print(" " + stat)
+  def produceLine (number: Int, count: Int, stats: List[Any]): String = {
+    var line: String = ""
+    line = number.toString + " " + count.toString
+    for (i <- 0 to stats.length - 1) {
+      line = line + " " + stats(i).toString
     }
-    println("")
-    stats = List()
+    line
   }
 }
