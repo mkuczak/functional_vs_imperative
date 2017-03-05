@@ -16,12 +16,12 @@ trait GenerateStats {
 }
 
 // TODO define suitable tuple type or case class for stats
-
 //case class Stats(item: Int, count: Int ...)
-
-//type Stats = (item: Int, count: Int ...)
+case class Stats(item: Int, count: Int, min: Option[Int], mean: Option[Double], max: Option[Int])
+//I'M NOT TOO SURE HOW TO IMPLEMENT THIS
 
 // TODO testing version of produceLine
+// DONE DONE DONE DONE DONE DONE DONE DONE
 
 
 trait Main extends GenerateStats {
