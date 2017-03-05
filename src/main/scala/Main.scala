@@ -7,25 +7,50 @@ import scala.io.Source
   * Created by Matthew on 2/10/17.
   */
 
-object main extends App {
+trait BackEnd {
+  def produceLine(number: Int, count: Int, stats: List[Any]): Unit
+}
+
+trait GenerateStats {
+  def toQueue(numbers: Iterator[Int], wins: Array[Int]): Unit
+}
+
+// TODO define suitable tuple type or case class for stats
+
+//case class Stats(item: Int, count: Int ...)
+
+//type Stats = (item: Int, count: Int ...)
+
+// TODO testing version of produceLine
 
 
-  val wins = args.map(_.toInt)
-  //val maxWin: Int = wins.reduceLeft(_ max _)
-  //var numWin: Int = wins.length
-  //Gathers information about the arguments passed in and puts them into a usable form called "wins"
+trait Main extends GenerateStats {
 
-  val incoming = Source.stdin.getLines
-  val words = incoming.flatMap(_.split("\\W+"))
-  val numbers = words.map(_.toInt)
-  //Converts the standard input into a usable form called "numbers"
+  def main(args: Array[String]): Unit = {
+    val wins = args.map(_.toInt)
+    //val maxWin: Int = wins.reduceLeft(_ max _)
+    //var numWin: Int = wins.length
+    //Gathers information about the arguments passed in and puts them into a usable form called "wins"
 
-  val imp = new Imperative()
-  imp.toQueue(numbers, wins)
+    val incoming = Source.stdin.getLines
+    val words = incoming.flatMap(_.split("\\W+"))
+    val numbers = words.map(_.toInt)
+    //Converts the standard input into a usable form called "numbers"
 
-//  val fun = new Functional()
-//  fun.toQueue(numbers, wins)
+    toQueue(numbers, wins)
+  }
 
+  //  val fun = new Functional()
+  //  fun.toQueue(numbers, wins)
 
   // Press CTRL+D to leave this for loop and continue...
+
+  def produceLine(number: Int, count: Int, stats: List[Any]): Unit = {
+    var line: String = ""
+    line = number.toString + " " + count.toString
+    for (i <- 0 to stats.length - 1) {
+      line = line + " " + stats(i).toString
+    }
+    println(line)
+  }
 }

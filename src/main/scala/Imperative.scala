@@ -4,7 +4,10 @@ package cs372.p1
   */
 import scala.collection._
 
-class Imperative {
+object ImperativeMain extends Main with Imperative
+
+trait Imperative extends GenerateStats with BackEnd {
+
   var largest_window: Int = 0
   var num: Int = 0
   var count: Int = 0
@@ -14,7 +17,7 @@ class Imperative {
   //Option Int: Can be set to Some(n), or None.
   //I don't think that I need that type anymore
 
-  def toQueue(numbers: Iterator[Int], wins: Array[Int]): Unit = {
+  override def toQueue(numbers: Iterator[Int], wins: Array[Int]): Unit = {
     var window: List[Int] = List()
     var maxWin = wins.max
 
@@ -23,7 +26,7 @@ class Imperative {
     for(num<-numbers) {
       count = count + 1
       window = num +: window.take(maxWin - 1)
-      print(produceLine(num, count, getStats(window,wins))+"\n")
+      produceLine(num, count, getStats(window,wins))
     }
   }
 
@@ -41,14 +44,5 @@ class Imperative {
       }
     }
     stats
-  }
-
-  def produceLine (number: Int, count: Int, stats: List[Any]): String = {
-    var line: String = ""
-    line = number.toString + " " + count.toString
-    for (i <- 0 to stats.length - 1) {
-      line = line + " " + stats(i).toString
-    }
-    line
   }
 }
