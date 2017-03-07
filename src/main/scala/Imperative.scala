@@ -8,12 +8,6 @@ object ImperativeMain extends Main with Imperative
 
 trait Imperative extends GenerateStats with BackEnd {
 
-  var largest_window: Int = 0
-  var num: Int = 0
-  var count: Int = 0
-  var stats: List[String] = List()
-
-  var queue = new mutable.Queue[Int]()
   //Option Int: Can be set to Some(n), or None.
   //I don't think that I need that type anymore
 
