@@ -1,7 +1,4 @@
 package cs372.p1
-/**
-  * Created by Matthew on 2/7/17.
-  */
 import scala.collection._
 
 object FunctionalMain extends Main with Functional
@@ -18,20 +15,18 @@ trait Functional extends GenerateStats with BackEnd {
     }
   }
 
-  def getStats(window: List[Int], wins: Array[Int]): List[Any] = {
+  def getStats(window: List[Int], wins: Array[Int]): List[(Option[Int], Option[Double], Option[Int])] = {
     val stats = wins.foldLeft {
-      (List.empty[Any])
+      (List.empty[(Option[Int], Option[Double], Option[Int])])
     } { (prep, next) =>
       if(wins.max > window.length){
-        val prep1 = prep :+ "?"
-        val prep2 = prep1 :+ "?"
-        val prep3 = prep2 :+ "?"
-        (prep3)
+        val prep1 = prep :+ (None, None, None)
+        (prep1)
       } else {
-        val prep1 = prep :+ (window.take(next)).min
-        val prep2 = prep1 :+ ((window.take(next).sum)) / (next)
-        val prep3 = prep2 :+ (window.take(next)).max
-        (prep3)
+        val prep1 = prep :+ (Some((window.take(next)).min),
+          Some(((window.take(next).sum.toDouble)) / (next.toDouble)),
+          Some((window.take(next)).max))
+        (prep1)
       }
     }
     stats
